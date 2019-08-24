@@ -21,7 +21,8 @@ public class CartController {
     @GetMapping("{cartId}")
     public List<GenericEntity> getProducts(@PathVariable Long cartId) throws Exception {
         GenericEntity cart = cartRepository.findById(cartId).orElseThrow(Exception::new);
-        return cart.getGenericEntityList();
+//        return cart.getProductList();
+        return new ArrayList<>();
     }
 
     @PostMapping("{cartId}/products")
@@ -29,7 +30,7 @@ public class CartController {
                                      @RequestBody List<GenericEntity> productList) throws Exception {
         GenericEntity cart = cartRepository.findById(cartId).orElseThrow(Exception::new);
         for (GenericEntity product : productList) {
-            cart.getGenericEntityList().add(product);
+//            cart.getProductList().add(product);
         }
         return cart;
     }
@@ -39,10 +40,11 @@ public class CartController {
                                  @PathVariable Long productId) throws Exception {
         GenericEntity cart = cartRepository.findById(cartId).orElseThrow(Exception::new);
         GenericEntity product = cartRepository.findById(productId).orElseThrow(Exception::new);
-        return cart.getGenericEntityList().remove(product);
+//        return cart.getProductList().remove(product);
+        return true;
     }
 
-    @PostMapping("{cardId}/createOrder")
+    @PostMapping("{cartId}/createOrder")
     public GenericEntity createOrder(@PathVariable Long cartId) throws Exception {
         GenericEntity cart = cartRepository.findById(cartId).orElseThrow(Exception::new);
         GenericEntity order = new GenericEntity("cart");

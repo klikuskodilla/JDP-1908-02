@@ -10,7 +10,6 @@ public class EcommerceeApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EcommerceeApplication.class, args);
-        ArrayList a;
     }
 
 }
