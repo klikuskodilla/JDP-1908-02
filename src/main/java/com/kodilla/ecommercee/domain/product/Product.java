@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @Table(name = "products")
 public class Product {
 
-
     private Long id;
     private String name;
     private BigDecimal price;

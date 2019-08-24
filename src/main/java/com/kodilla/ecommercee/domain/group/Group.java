@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "group")
+@Table(name = "products_group")
 public class Group {
 
     private Long groupId;
@@ -39,7 +39,7 @@ public class Group {
 
     @OneToMany(
             targetEntity = Product.class,
-            mappedBy = "group",
+            mappedBy = "products_group",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
