@@ -39,7 +39,6 @@ public class Group {
 
     @OneToMany(
             targetEntity = Product.class,
-            mappedBy = "products_group",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )

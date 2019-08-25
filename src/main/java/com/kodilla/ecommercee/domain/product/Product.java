@@ -50,7 +50,7 @@ public class Product {
         return description;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     public Group getGroup() {
         return group;
