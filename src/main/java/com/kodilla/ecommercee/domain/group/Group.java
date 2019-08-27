@@ -12,7 +12,7 @@ public class Group {
 
     private Long groupId;
     private Long groupName;
-    private List<Product> productsCategories = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
     public Group() {
     }
@@ -20,7 +20,7 @@ public class Group {
     public Group(Long groupId, Long groupName, List<Product> productsCategories) {
         this.groupId = groupId;
         this.groupName = groupName;
-        this.productsCategories = productsCategories;
+        this.products = productsCategories;
     }
 
     @Id
@@ -42,8 +42,8 @@ public class Group {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    public List<Product> getProductsCategories() {
-        return productsCategories;
+    public List<Product> getProducts() {
+        return products;
     }
 
     public void setGroupId(Long groupId) {
@@ -54,8 +54,8 @@ public class Group {
         this.groupName = groupName;
     }
 
-    public void setProductsCategories(List<Product> productsCategories) {
-        this.productsCategories = productsCategories;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
 }
