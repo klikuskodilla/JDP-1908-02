@@ -16,11 +16,11 @@ public class UserEntity {
 	@Column(name = "ADRESS", nullable = false)
 	private String adress;
 	@Column(name = "PHONE", nullable = false)
-	private int phone;
+	private String phone;
 
 	public UserEntity () {}
 
-	public UserEntity(String firstName, String lastName, String adress, int phone) {
+	public UserEntity(String firstName, String lastName, String adress, String phone) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.adress = adress;
@@ -55,10 +55,10 @@ public class UserEntity {
 		this.adress = adress;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	private void setPhone(int phone) {
+	private void setPhone(String phone) {
 		this.phone = phone;
 	}
 }
