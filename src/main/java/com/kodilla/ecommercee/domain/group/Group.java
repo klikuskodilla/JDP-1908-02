@@ -57,4 +57,5 @@ public class Group {
     public void setProductsCategories(List<Product> productsCategories) {
         this.productsCategories = productsCategories;
     }
+
 }
