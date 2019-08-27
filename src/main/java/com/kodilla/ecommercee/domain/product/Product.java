@@ -75,4 +75,5 @@ public class Product {
     public void setGroup(Group group) {
         this.group = group;
     }
+
 }
