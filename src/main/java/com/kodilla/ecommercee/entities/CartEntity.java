@@ -13,7 +13,7 @@ public class CartEntity {
 	@Column(name = "USER", nullable = false)
 	private UserEntity user;
 	@Column(name = "PRODUCT", nullable = false)
-	private List<ProductEntity> products = new ArrayList<>;
+	private List<ProductEntity> products = new ArrayList<>();
 
 	public CartEntity() {}
 
