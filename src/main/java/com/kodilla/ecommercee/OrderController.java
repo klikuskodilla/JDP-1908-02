@@ -8,15 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "getOrders")
+    @RequestMapping(method = RequestMethod.GET, value = "/")
     public List<GenericEntity> getOrders(){
         return new ArrayList<>();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getOrder")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public GenericEntity getOrder(Long id){
         return new GenericEntity();
     }
