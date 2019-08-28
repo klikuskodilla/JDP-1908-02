@@ -1,0 +1,1 @@
+plik utworzony, aby wypchnąć pusty folder. Do usunięcia.
