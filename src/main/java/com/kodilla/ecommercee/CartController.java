@@ -21,7 +21,6 @@ public class CartController {
 
     @PostMapping("{cartId}/products")
     public GenericEntity addProducts(@PathVariable Long cartId, @RequestBody List<GenericEntity> productList) {
-
         return new GenericEntity("addProducts test");
     }
 
@@ -31,7 +30,7 @@ public class CartController {
     }
 
     @PostMapping("{cartId}/createOrder")
-    public GenericEntity createOrder(@PathVariable Long cartId) {
-        return new GenericEntity("createOrder test");
+    public void createOrder(@PathVariable Long cartId) {
+
     }
 }
