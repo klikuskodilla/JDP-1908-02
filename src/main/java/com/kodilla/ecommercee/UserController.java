@@ -31,14 +31,4 @@ public class UserController {
     @DeleteMapping("/{id}/delete")
     public void deleteUser(Long id){
     }
-
-    @GetMapping("/accessDenied")
-    public String accessDenied(Long userId){
-        return "Access Denied.";
-    }
-
-    @GetMapping("/createKey")
-    public String createKey(String username,  String password){
-        return UUID.randomUUID().toString();
-    }
 }
