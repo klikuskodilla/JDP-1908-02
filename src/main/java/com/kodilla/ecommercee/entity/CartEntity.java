@@ -24,12 +24,12 @@ public class CartEntity {
 	@Column(name = "PRODUCT_QUANTITY", nullable = false)
 	private int productQuantity;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private UserEntity userEntity;
-
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private OrderEntity orderEntity;
-
-	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "cartEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<ProductEntity> productList = new ArrayList<>();
+//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	private UserEntity userEntity;
+//
+//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	private OrderEntity orderEntity;
+//
+//	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "cartEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	private List<ProductEntity> productList = new ArrayList<>();
 }
