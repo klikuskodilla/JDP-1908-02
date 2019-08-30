@@ -37,7 +37,7 @@ public class UserEntity {
 	@Column(name = "MAIL", nullable = false)
 	private String mail;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "CART_ID")
-	private CartEntity cartEntity;
+//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "CART_ID")
+//	private CartEntity cartEntity;
 }
