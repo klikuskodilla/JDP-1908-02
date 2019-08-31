@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "products_group")
@@ -28,11 +29,11 @@ public class ProductGroupEntity {
     private Long groupName;
 
     @OneToMany(
-            targetEntity = Product.class,
+            targetEntity = ProductEntity.class,
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "products_group"
     )
-    private List<Product> products = new ArrayList<>();
+    private List<ProductEntity> products = new ArrayList<>();
 
 }
