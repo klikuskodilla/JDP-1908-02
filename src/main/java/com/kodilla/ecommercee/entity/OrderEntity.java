@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "orders_list")
+@Table(name = "orders")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
