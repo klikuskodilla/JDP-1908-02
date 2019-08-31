@@ -15,7 +15,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @Getter
 @Setter
-public class GroupEntity {
+public class ProductGroupEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,15 +27,12 @@ public class GroupEntity {
     @NotNull
     private Long groupName;
 
-//    Zgodnie z radą naszego mentora, komentuję referencję do klasy, której jeszcze nie ma zmerge'owanej
-//    Tak w każdym razie wyglądać ma pełna konstrukcja encji Product
-//
-//    @OneToOne(
-//            targetEntity = Product.class,
-//            cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY
-//            mappedBy = "products_group"
-//    )
-//    private List<Product> products = new ArrayList<>();
+    @OneToMany(
+            targetEntity = Product.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "products_group"
+    )
+    private List<Product> products = new ArrayList<>();
 
 }
