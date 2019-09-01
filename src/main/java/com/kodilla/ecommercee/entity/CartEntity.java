@@ -20,8 +20,8 @@ public class CartEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CART_ID", nullable = false)
 	private int cartId;
-	@Column(name = "TO_PAY", nullable = false)
-	private double toPay;
+//	@Column(name = "TO_PAY", nullable = false)
+//	private double toPay;
 	@Column(name = "PRODUCT_QUANTITY", nullable = false)
 	private int productQuantity;
 
