@@ -16,10 +16,10 @@ public class UserController {
         return new GenericEntity();
     }
 
-    @PutMapping("/{id}/update")
-    public GenericEntity updateUser(Long id){
-        return new GenericEntity();
-    }
+//    @PutMapping("/{id}/update")
+//    public UserDto updateUser(Long userId){
+//       return new UserDto();
+//    }
 
     @DeleteMapping("/{id}/delete")
     public void deleteUser(Long id){
