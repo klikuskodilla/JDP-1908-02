@@ -18,6 +18,10 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "USER_ID", nullable = false)
 	private int id;
+	@Column(name = "USER_KEY", nullable = false)
+	private String userKey;
+	@Column(name = "USER_STATUS", nullable = false)
+	private String userStatus;
 	@Column(name = "LOGIN", nullable = false)
 	private String login;
 	@Column(name = "PASSWORD", nullable = false)
@@ -37,7 +41,5 @@ public class UserEntity {
 	@Column(name = "MAIL", nullable = false)
 	private String mail;
 
-//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "CART_ID")
 //	private CartEntity cartEntity;
 }
