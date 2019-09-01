@@ -29,6 +29,6 @@ public class CartEntity {
 //	@JoinColumn(name = "USER_ID")
 //	private UserEntity userEntity;
 
-	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "cartEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<ProductEntity> productList = new ArrayList<>();
+//	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "cartEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	private List<ProductEntity> productList = new ArrayList<>();
 }
