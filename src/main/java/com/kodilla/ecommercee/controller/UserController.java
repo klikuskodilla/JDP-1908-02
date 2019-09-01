@@ -17,8 +17,8 @@ public class UserController {
     }
 
 //    @PutMapping("/{id}/update")
-//    public UserDto updateUser(Long userId){
-//       return new UserDto();
+//    public UserDto updateUser(UserDto userDto){
+//       return userDto;
 //    }
 
     @DeleteMapping("/{id}/delete")
