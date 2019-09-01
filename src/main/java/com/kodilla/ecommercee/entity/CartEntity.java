@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,11 +26,9 @@ public class CartEntity {
 	private int productQuantity;
 
 //	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "USER_ID")
 //	private UserEntity userEntity;
-//
-//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	private OrderEntity orderEntity;
-//
-//	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "cartEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<ProductEntity> productList = new ArrayList<>();
+
+	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "cartEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<ProductEntity> productList = new ArrayList<>();
 }
