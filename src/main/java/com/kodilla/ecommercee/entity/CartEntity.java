@@ -20,8 +20,6 @@ public class CartEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CART_ID", nullable = false)
 	private int cartId;
-//	@Column(name = "TO_PAY", nullable = false)
-//	private double toPay;
 	@Column(name = "PRODUCT_QUANTITY", nullable = false)
 	private int productQuantity;
 
@@ -29,6 +27,6 @@ public class CartEntity {
 //	@JoinColumn(name = "USER_ID")
 //	private UserEntity userEntity;
 
-//	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "cartEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<ProductEntity> productList = new ArrayList<>();
+	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "cartEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<ProductEntity> productList = new ArrayList<>();
 }
