@@ -23,10 +23,10 @@ public class CartEntity {
 	@Column(name = "PRODUCT_QUANTITY", nullable = false)
 	private int productQuantity;
 
-//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "USER_ID")
+//	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "USER_ID")-
 //	private UserEntity userEntity;
 
-	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "id", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	private List<ProductEntity> productList = new ArrayList<>();
 }
