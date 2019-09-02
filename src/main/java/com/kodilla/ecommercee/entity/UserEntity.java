@@ -40,6 +40,4 @@ public class UserEntity {
 	private String phone;
 	@Column(name = "MAIL", nullable = false)
 	private String mail;
-
-//	private CartEntity cartEntity;
 }
