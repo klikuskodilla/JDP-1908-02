@@ -36,4 +36,7 @@ public class ProductGroupEntity {
     )
     private List<ProductEntity> products = new ArrayList<>();
 
+    public ProductGroupEntity(@NotNull String groupName) {
+        this.groupName = groupName;
+    }
 }
