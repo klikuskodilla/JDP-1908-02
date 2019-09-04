@@ -22,15 +22,16 @@ public class ProductGroupEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
     @Column(name = "group_id", unique = true)
-    private Long groupId;
+    private Long id;
 
     @Column(name = "group_name")
     @NotNull
-    private Long groupName;
+    private String groupName;
 
     @OneToMany(
             targetEntity = ProductEntity.class,
             cascade = CascadeType.ALL,
+            mappedBy = "productGroupEntity",
             fetch = FetchType.LAZY
     )
     private List<ProductEntity> products = new ArrayList<>();
