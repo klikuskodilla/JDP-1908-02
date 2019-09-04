@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,13 +22,18 @@ public class CartEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CART_ID", nullable = false)
 	private int cartId;
-	@Column(name = "PRODUCT_QUANTITY", nullable = false)
-	private int productQuantity;
 
-//	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "USER_ID")-
-//	private UserEntity userEntity;
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinColumn(name = "USER_ID")
+	private UserEntity userEntity;
 
 	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "id", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	private List<ProductEntity> productList = new ArrayList<>();
+	@MapKey(name = "name")
+	private Map<ProductEntity, Integer> productMap = new HashMap<>();
+
+	// konstruktor utworzony na potrzeby Izy
+	public CartEntity(int cartId, Map<ProductEntity, Integer> productMap) {
+		this.cartId = cartId;
+		this.productMap = productMap;
+	}
 }
