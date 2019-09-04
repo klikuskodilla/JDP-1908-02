@@ -31,15 +31,17 @@ public class ProductEntity {
     @NotNull
     private BigDecimal price;
 
-    @Column(name = "decription")
+    @Column(name = "description")
     @NotNull
     private String description;
 
-//    Zgodnie z radą naszego mentora, komentuję referencję do klasy, której jeszcze nie ma zmerge'owanej
-//    Tak w każdym razie wyglądać ma pełna konstrukcja encji Product
-//
-//    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "group_id")
-//    private Group group;
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id")
+    private ProductGroupEntity productGroupEntity;
 
+    public ProductEntity(@NotNull String name, @NotNull BigDecimal price, @NotNull String description) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+    }
 }
