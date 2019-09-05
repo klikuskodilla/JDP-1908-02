@@ -3,6 +3,7 @@ package com.kodilla.ecommercee.entity;
 import com.kodilla.ecommercee.repository.CartRepository;
 import com.kodilla.ecommercee.repository.UserRepository;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,9 @@ public class CartEntityTest {
         ProductEntity pencil = new ProductEntity("pencil", new BigDecimal(1.2), " ");
         ProductEntity notebook = new ProductEntity("notebook", new BigDecimal(2.5), " ");
         Map<ProductEntity, Integer> products = new HashMap<>();
-     //   products.put(pen, 4);
-     //   products.put(pencil, 1);
-     //   products.put(notebook, 2);
+        //   products.put(pen, 4);
+        //   products.put(pencil, 1);
+        //   products.put(notebook, 2);
         CartEntity newCart = new CartEntity(user, products);
 
         //when
@@ -112,6 +113,7 @@ public class CartEntityTest {
         //Optional<ProductEntity> newNotebook = productRepository.findById(notebookId);
         cartRepository.deleteById(id);
         Optional<CartEntity> cart = cartRepository.findById(id);
+
         Assert.assertFalse(cart.isPresent());
         //Assert.assertTrue(newPen.isPresent());
         //Assert.assertTrue(newPencil.isPresent());
@@ -124,5 +126,29 @@ public class CartEntityTest {
         //productRepository.deleteById(penId);
         //productRepository.deleteById(pencilId);
         //productRepository.deleteById(notebookId);
+    }
+
+    @Test
+    public void addingProductToCartTest(){
+        //given
+        UserEntity user = new UserEntity("key", "status", "login", "pass", "name", "lastname", "street", "city", "postcode", "phone", "mail");
+        ProductEntity pen = new ProductEntity("pen", new BigDecimal(1.5), "description");
+        Map<ProductEntity, Integer> products = new HashMap<>();
+        CartEntity newCart = new CartEntity(user, products);
+
+        //when
+        cartRepository.save(newCart);
+        userRepository.save(user);
+        //productRepository.save(pen);
+
+        Map<ProductEntity, Integer> newMap = new HashMap<>();
+        newMap.put(pen, 5);
+
+       // newCart.setProductMap(newMap);
+        int cartId = newCart.getCartId();
+
+        //then
+        //Assert.assertEquals(1, cartRepository.findById(cartId).getProductMap.size())
+
     }
 }
