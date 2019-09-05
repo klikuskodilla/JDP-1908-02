@@ -27,9 +27,15 @@ public class CartEntity {
 	@JoinColumn(name = "USER_ID")
 	private UserEntity userEntity;
 
-	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "id", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	@MapKey(name = "name")
+	@ElementCollection
+	@MapKeyClass(value = ProductEntity.class)
+	@CollectionTable(name = "TEST_MAP2")
 	private Map<ProductEntity, Integer> productMap = new HashMap<>();
+
+//	Backup Code
+//	@OneToMany(targetEntity = ProductEntity.class, mappedBy = "id", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+//	@MapKey(name = "name")
+//	private Map<ProductEntity, Integer> productMap = new HashMap<>();
 
 	// konstruktor utworzony na potrzeby Izy
 	public CartEntity(int cartId, Map<ProductEntity, Integer> productMap) {
