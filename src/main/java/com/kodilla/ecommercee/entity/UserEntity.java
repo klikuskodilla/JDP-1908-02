@@ -40,4 +40,20 @@ public class UserEntity {
 	private String phone;
 	@Column(name = "MAIL", nullable = false)
 	private String mail;
+
+	//konstruktor do testowania:
+
+	public UserEntity(String userKey, String userStatus, String login, String password, String firstName, String lastName, String street, String city, String postCode, String phone, String mail) {
+		this.userKey = userKey;
+		this.userStatus = userStatus;
+		this.login = login;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.street = street;
+		this.city = city;
+		this.postCode = postCode;
+		this.phone = phone;
+		this.mail = mail;
+	}
 }
