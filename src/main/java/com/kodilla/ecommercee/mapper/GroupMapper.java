@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class GroupMapper {
     public ProductGroupEntity mapToProductGroupEntity(final ProductGroupDto groupDto) {
         return new ProductGroupEntity(
+                groupDto.getId(),
                 groupDto.getName(),
                 Collections.emptyList());
     }
