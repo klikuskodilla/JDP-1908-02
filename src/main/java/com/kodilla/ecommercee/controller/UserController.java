@@ -12,7 +12,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public GenericEntity getUser(@RequestParam Long userId){
+    public GenericEntity getUser(@PathVariable Long userId){
         return new GenericEntity();
     }
 
@@ -22,6 +22,6 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}/delete")
-    public void deleteUser(@RequestParam Long userId){
+    public void deleteUser(@PathVariable Long userId){
     }
 }
