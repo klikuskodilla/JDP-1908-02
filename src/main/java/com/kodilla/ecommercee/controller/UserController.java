@@ -7,21 +7,20 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class UserController {
     @PostMapping("/createUser")
-    public GenericEntity createUser(){
-        return new GenericEntity();
+    public void createUser(@RequestBody GenericEntity userDto){
     }
 
     @GetMapping("/{id}")
-    public GenericEntity getUser(Long id){
+    public GenericEntity getUser(@RequestParam Long userId){
         return new GenericEntity();
     }
 
-//    @PutMapping("/{id}/update")
-//    public UserDto updateUser(UserDto userDto){
-//       return userDto;
-//    }
+    @PutMapping("/{id}/update")
+    public GenericEntity updateUser(@RequestBody GenericEntity userDto){
+       return userDto;
+    }
 
     @DeleteMapping("/{id}/delete")
-    public void deleteUser(Long id){
+    public void deleteUser(@RequestParam Long userId){
     }
 }
