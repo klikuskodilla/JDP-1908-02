@@ -16,7 +16,7 @@ public class UserController {
         return new GenericEntity();
     }
 
-    @PutMapping("/{id}/update")
+    @PutMapping("/update")
     public GenericEntity updateUser(@RequestBody GenericEntity userDto){
        return userDto;
     }
