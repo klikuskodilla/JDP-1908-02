@@ -27,10 +27,7 @@ public class OrderEntity {
     @NotNull
     private LocalDate dateOfOrder;
 
-//    Zgodnie z radą naszego mentora, komentuję referencję do klasy, której jeszcze nie ma zmerge'owanej
-//    Tak w każdym razie wyglądać ma pełna konstrukcja encji Cart
-//
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "cart_id")
-//    private Cart cart;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "CART_ID")
+    private CartEntity cartEntity;
 }
