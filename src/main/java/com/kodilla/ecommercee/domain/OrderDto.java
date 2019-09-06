@@ -1,16 +1,19 @@
 package com.kodilla.ecommercee.domain;
 
+import com.kodilla.ecommercee.entity.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDto {
-    Long orderId;
-    LocalDate date;
-    //CartDto cart; ???
+    private Long orderId;
+    private LocalDate date;
+    private Integer userId;
+    private Map<ProductEntity, Integer> products;
 }
