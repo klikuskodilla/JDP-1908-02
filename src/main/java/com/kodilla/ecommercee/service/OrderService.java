@@ -18,11 +18,11 @@ public class OrderService {
     }
 
     public Optional<OrderEntity> getOrder(final Long id){
-        return orderRepository.findById(id);
+        return orderRepository.findByOrderId(id);
     }
 
     public void deleteById(final Long id){
-        orderRepository.deleteById(id);
+        orderRepository.deleteByOrderId(id);
     }
 
     public OrderEntity saveOrder(final OrderEntity order){

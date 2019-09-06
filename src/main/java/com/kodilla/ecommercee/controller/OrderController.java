@@ -19,12 +19,12 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/")
+    @RequestMapping(method = RequestMethod.GET, value = "")
     public List<OrderDto> getOrders(){
         return orderMapper.mapToOrderDtoList(orderService.getOrders());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "{id}")
     public OrderDto getOrder(@PathVariable Long id) throws NotFoundException {
         return orderMapper.mapToOrderDto(orderService.getOrder(id).orElseThrow(NotFoundException::new));
     }
@@ -39,7 +39,7 @@ public class OrderController {
         orderService.saveOrder(orderMapper.mapToOrder(orderDto));
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/update")
+    @RequestMapping(method = RequestMethod.PUT, value = "update")
     public OrderDto updateOrder(@RequestBody OrderDto orderDto){
         return orderMapper.mapToOrderDto(orderService.saveOrder(orderMapper.mapToOrder(orderDto)));
     }

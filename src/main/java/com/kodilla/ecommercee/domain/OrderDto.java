@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Map;
+
 
 @Getter
 @AllArgsConstructor
@@ -15,5 +15,5 @@ public class OrderDto {
     private Long orderId;
     private LocalDate date;
     private Integer userId;
-    private Map<ProductEntity, Integer> products;
+    private int cartId;
 }
