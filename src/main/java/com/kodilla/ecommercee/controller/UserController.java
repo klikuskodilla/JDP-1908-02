@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/users", produces = "application/json")
 public class UserController {
-    @PostMapping("/createUser")
+    @PostMapping("/create")
     public void createUser(@RequestBody GenericEntity userDto){
         new GenericEntity();
     }
