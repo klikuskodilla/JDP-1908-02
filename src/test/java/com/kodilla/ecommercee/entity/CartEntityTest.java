@@ -133,8 +133,12 @@ public class CartEntityTest {
         Optional<CartEntity> cart = cartRepository.findById(cartId);
         cart.get().getProductMap().put(pen, 3);
 
+        cartRepository.save(cart.orElse(null));
+
+        Optional<CartEntity> cartWithProduct = cartRepository.findById(cartId);
+
         //then
-        Assert.assertEquals(1, cart.get().getProductMap().size());
+        Assert.assertEquals(1, cartWithProduct.get().getProductMap().size());
 
         //cleanUp
         cartRepository.deleteById(cartId);
