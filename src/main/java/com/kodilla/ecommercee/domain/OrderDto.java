@@ -14,6 +14,6 @@ import java.time.LocalDate;
 public class OrderDto {
     private Long orderId;
     private LocalDate date;
-    private Integer userId;
+    private Long userId;
     private int cartId;
 }
