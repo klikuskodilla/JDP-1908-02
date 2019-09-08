@@ -20,35 +20,14 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProductEntityTest {
-    private ProductGroupEntity group;
-    private ProductEntity productEntity;
     @Autowired
     private ProductRepository productRepository;
 
     @Autowired
     private GroupRepository groupRepository;
 
-    @Before
-    public void createSampleDataInTheDatabase() {
-        ProductGroupEntity groupEntity = new ProductGroupEntity();
-        groupEntity.setGroupName("test group name 1");
-        groupRepository.save(groupEntity);
-        ProductEntity product = new ProductEntity("test name 1", new BigDecimal("1.11"), "test description 1");
-        product.setProductGroupEntity(groupEntity);
-        groupEntity.getProducts().add(product);
-        group = groupRepository.save(groupEntity);
-        productEntity = group.getProducts().get(0);
-        ProductEntity product2 = new ProductEntity("test name 2", new BigDecimal("2.22"), "test description 2");
-        productRepository.save(product2);
-    }
-
-    @After
-    public void cleanUpDatabase() {
-        groupRepository.deleteById(group.getId());
-    }
-
     @Test
-    public void testCreateProductAndFind() {
+    public void testCreateProduct() {
         //Given
         ProductGroupEntity groupEntity = new ProductGroupEntity();
         groupEntity.setGroupName("test group name 1");
@@ -72,6 +51,15 @@ public class ProductEntityTest {
     @Test
     public void testDeleteProductWithoutGroup() {
         //Given
+        ProductGroupEntity groupEntity = new ProductGroupEntity();
+        groupEntity.setGroupName("test group name 1");
+        groupRepository.save(groupEntity);
+        ProductEntity product = new ProductEntity("test name 1", new BigDecimal("1.11"), "test description 1");
+        product.setProductGroupEntity(groupEntity);
+        groupEntity.getProducts().add(product);
+        ProductGroupEntity group = groupRepository.save(groupEntity);
+        ProductEntity product2 = new ProductEntity("test name 2", new BigDecimal("2.22"), "test description 2");
+        productRepository.save(product2);
         //When
         group.getProducts().get(0).setProductGroupEntity(null);
         Long productId = productRepository.save(group.getProducts().get(0)).getId();
@@ -80,13 +68,25 @@ public class ProductEntityTest {
         //Then
         assertTrue(groupRepository.findById(group.getId()).isPresent());
         assertFalse(productRepository.findById(productId).isPresent());
+        //CleanUp
+        groupRepository.deleteById(group.getId());
+
     }
 
     @Test
     public void testUpdateProduct() {
         //Given
+        ProductGroupEntity groupEntity = new ProductGroupEntity();
+        groupEntity.setGroupName("test group name 1");
+        groupRepository.save(groupEntity);
+        ProductEntity product = new ProductEntity("test name 1", new BigDecimal("1.11"), "test description 1");
+        product.setProductGroupEntity(groupEntity);
+        groupEntity.getProducts().add(product);
+        ProductEntity savedProduct = groupRepository.save(groupEntity).getProducts().get(0);
+        ProductEntity product2 = new ProductEntity("test name 2", new BigDecimal("2.22"), "test description 2");
+        productRepository.save(product2);
         //When
-        Optional<ProductEntity> result = productRepository.findById(productEntity.getId());
+        Optional<ProductEntity> result = productRepository.findById(savedProduct.getId());
         ProductEntity entity = result.get();
         entity.setName("updated name");
         entity.setPrice(new BigDecimal("2.22"));
@@ -96,18 +96,32 @@ public class ProductEntityTest {
         //Then
         Optional<ProductEntity> updatedProduct = productRepository.findById(id);
         assertTrue(updatedProduct.isPresent());
-        assertEquals(productEntity.getId(), updatedProduct.get().getId());
-        assertNotEquals(productEntity.getName(), updatedProduct.get().getName());
-        assertNotEquals(productEntity.getPrice(), updatedProduct.get().getPrice());
-        assertNotEquals(productEntity.getProductGroupEntity(), updatedProduct.get().getProductGroupEntity());
+        assertEquals(savedProduct.getId(), updatedProduct.get().getId());
+        assertEquals("updated name", updatedProduct.get().getName());
+        assertEquals(new BigDecimal("2.22"), updatedProduct.get().getPrice());
+        assertNull(updatedProduct.get().getProductGroupEntity());
+        //CleanUp
+        groupRepository.deleteById(groupEntity.getId());
+
     }
 
     @Test
     public void testFindAll() {
         //Given
+        ProductGroupEntity groupEntity = new ProductGroupEntity();
+        groupEntity.setGroupName("test group name 1");
+        groupRepository.save(groupEntity);
+        ProductEntity product = new ProductEntity("test name 1", new BigDecimal("1.11"), "test description 1");
+        product.setProductGroupEntity(groupEntity);
+        groupEntity.getProducts().add(product);
+        ProductGroupEntity group = groupRepository.save(groupEntity);
+        ProductEntity product2 = new ProductEntity("test name 2", new BigDecimal("2.22"), "test description 2");
+        productRepository.save(product2);
         //When
         List<ProductEntity> products = productRepository.findAll();
         //Then
         assertEquals(2, products.size());
+        //CleanUp
+        groupRepository.deleteById(group.getId());
     }
 }
