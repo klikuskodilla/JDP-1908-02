@@ -30,27 +30,29 @@ public class CartEntityTest {
     @Test
     public void cartSaveTest(){
         //given
-        UserEntity user = new UserEntity("key", "status", "login", "pass", "name", "lastname", "street", "city", "postcode", "phone", "mail");
-        ProductEntity pen = new ProductEntity("pen", new BigDecimal(1.5), "description");
-        ProductEntity pencil = new ProductEntity("pencil", new BigDecimal(1.2), " ");
-        ProductEntity notebook = new ProductEntity("notebook", new BigDecimal(2.5), " ");
+        UserEntity user = new UserEntity("UKey:test", "Status:active", "login:test", "pass:test", "fname:test", "lname:test", "street:test", "city:test", "postCode", "phone", "test@test.com");
+        ProductEntity pen = new ProductEntity();
         Map<ProductEntity, Integer> products = new HashMap<>();
         //   products.put(pen, 4);
-        //   products.put(pencil, 1);
-        //   products.put(notebook, 2);
         CartEntity newCart = new CartEntity(user, products);
 
         //when
         userRepository.save(user);
         cartRepository.save(newCart);
+// productRepository.save(pen);
 
-        //then
         int id = newCart.getCartId();
         Optional<CartEntity> cart = cartRepository.findById(id);
+
+        int userId = user.getId();
+
+
+        //then
         Assert.assertTrue(cart.isPresent());
+        Assert.assertEquals(userId, cart.get().getUserEntity().getId());
+        //Assert.assertEquals(4, cart.get().getProductMap().get(pen));
 
         // cleanUp
-        int userId = user.getId();
         cartRepository.deleteById(id);
         userRepository.deleteById(userId);
     }
@@ -58,14 +60,8 @@ public class CartEntityTest {
     @Test
     public void cardDeletingUserNotDeletingTest(){
         //given
-        UserEntity user = new UserEntity("key", "status", "login", "pass", "name", "lastname", "street", "city", "postcode", "phone", "mail");
-        ProductEntity pen = new ProductEntity("pen", new BigDecimal(1.5), "description");
-        ProductEntity pencil = new ProductEntity("pencil", new BigDecimal(1.2), " ");
-        ProductEntity notebook = new ProductEntity("notebook", new BigDecimal(2.5), " ");
+        UserEntity user = new UserEntity("UKey:test", "Status:active", "login:test", "pass:test", "fname:test", "lname:test", "street:test", "city:test", "postCode", "phone", "test@test.com");
         Map<ProductEntity, Integer> products = new HashMap<>();
-        //   products.put(pen, 4);
-        //   products.put(pencil, 1);
-        //   products.put(notebook, 2);
         CartEntity newCart = new CartEntity(user, products);
 
         //when
@@ -88,43 +84,31 @@ public class CartEntityTest {
     @Test
     public void cardDeletingProductsNotDeletingTest(){
         //given
-        UserEntity user = new UserEntity("key", "status", "login", "pass", "name", "lastname", "street", "city", "postcode", "phone", "mail");
+        UserEntity user = new UserEntity("UKey:test", "Status:active", "login:test", "pass:test", "fname:test", "lname:test", "street:test", "city:test", "postCode", "phone", "test@test.com");
         ProductEntity pen = new ProductEntity("pen", new BigDecimal(1.5), "description");
-        ProductEntity pencil = new ProductEntity("pencil", new BigDecimal(1.2), " ");
-        ProductEntity notebook = new ProductEntity("notebook", new BigDecimal(2.5), " ");
         Map<ProductEntity, Integer> products = new HashMap<>();
         //   products.put(pen, 4);
-        //   products.put(pencil, 1);
-        //   products.put(notebook, 2);
         CartEntity newCart = new CartEntity(user, products);
 
         //when
         userRepository.save(user);
         cartRepository.save(newCart);
+        //productRepository.save(pen);
 
         //then
         int id = newCart.getCartId();
         //int penId = pen.getId();
-        //int pencilId = pencil.getId();
-        //int notebookId = notebook.getId();
         //Optional<ProductEntity> newPen = productRepository.findById(penId);
-        //Optional<ProductEntity> newPencil = productRepository.findById(pencilId);
-        //Optional<ProductEntity> newNotebook = productRepository.findById(notebookId);
         cartRepository.deleteById(id);
         Optional<CartEntity> cart = cartRepository.findById(id);
 
         Assert.assertFalse(cart.isPresent());
         //Assert.assertTrue(newPen.isPresent());
-        //Assert.assertTrue(newPencil.isPresent());
-        //Assert.assertTrue(newNotebook.isPresent());
-
 
         // cleanUp
         int userId = user.getId();
         userRepository.deleteById(userId);
         //productRepository.deleteById(penId);
-        //productRepository.deleteById(pencilId);
-        //productRepository.deleteById(notebookId);
     }
 
     @Test
@@ -140,19 +124,18 @@ public class CartEntityTest {
         userRepository.save(user);
         //productRepository.save(pen);
 
-        Map<ProductEntity, Integer> newMap = new HashMap<>();
-        newMap.put(pen, 5);
-
-       // newCart.setProductMap(newMap);
         int cartId = newCart.getCartId();
+        Optional<CartEntity> cart = cartRepository.findById(cartId);
+        cart.get().getProductMap().put(pen, 3);
 
         //then
-        //Assert.assertEquals(1, cartRepository.findById(cartId).getProductMap.size())
+        //Assert.assertEquals(1, cart.get().getProductMap.size())
 
         //cleanUp
         int userId = user.getId();
         userRepository.deleteById(userId);
         cartRepository.deleteById(cartId);
-
+        //int penId = pen.getId();
+        //productRepository.deleteById(penId);
     }
 }
