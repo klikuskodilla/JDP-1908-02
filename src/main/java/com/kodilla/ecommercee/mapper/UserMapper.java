@@ -11,4 +11,9 @@ public class UserMapper {
         return new UserEntity(userDto.getId(), userDto.getUsername(), userDto.getStatus(), userDto.getUserKey(),
                 userDto.getLogin(), userDto.getPassword(), userDto.getCredentialEntity());
     }
+
+    public UserDto mapToUserDto(UserEntity userEntity) {
+        return new UserDto(userEntity.getId(), userEntity.getUsername(), userEntity.getStatus(), userEntity.getUserKey(),
+                userEntity.getLogin(), userEntity.getPassword(), userEntity.getCredentialEntity());
+    }
 }

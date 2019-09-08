@@ -26,6 +26,29 @@ public class UserController {
         userRepository.save(userMapper.mapToUser(userDto));
     }
 
+    @GetMapping("/{userId}")
+    public UserDto getUser(@PathVariable Long userId) throws Exception {
+        if (userRepository.findById(userId).isPresent()){
+            return userMapper.mapToUserDto(userRepository.findById(userId).get());
+        } else {
+            throw new Exception("User not found");
+        }
+    }
+
+    @PutMapping("/update")
+    public UserDto updateUser(@RequestBody UserDto userDto) {
+        return userMapper.mapToUserDto(userRepository.save(userMapper.mapToUser(userDto)));
+    }
+
+    @DeleteMapping("/{userId}/delete")
+    public void deleteUser(@PathVariable Long userId) throws Exception {
+        if (userRepository.findById(userId).isPresent()) {
+            userRepository.deleteById(userId);
+        } else {
+            throw new Exception("User not found");
+        }
+    }
+
     @PutMapping("/ban")
     public void banUser(@RequestParam Long userId) throws Exception {
         if (userRepository.findById(userId).isPresent()){
