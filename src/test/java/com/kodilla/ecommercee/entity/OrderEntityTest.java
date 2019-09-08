@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
@@ -55,4 +56,31 @@ public class OrderEntityTest {
         repository.deleteById(id);
     }
 
+    @Test
+    public void testOrderEntityFindAll() {
+        //given
+        OrderEntity order = new OrderEntity();
+        order.setDateOfOrder(LocalDate.now());
+        OrderEntity order2 = new OrderEntity();
+        order2.setDateOfOrder(LocalDate.now());
+        OrderEntity order3 = new OrderEntity();
+        order3.setDateOfOrder(LocalDate.now());
+
+        //when
+        repository.save(order);
+        repository.save(order2);
+        repository.save(order3);
+
+        //then
+        Long id = order.getOrderId();
+        Long id2 = order2.getOrderId();
+        Long id3 = order3.getOrderId();
+        List<OrderEntity> receivedOrders = repository.findAll();
+        Assert.assertEquals(3, receivedOrders.size());
+
+        //cleanUp
+        repository.deleteById(id);
+        repository.deleteById(id2);
+        repository.deleteById(id3);
+    }
 }
