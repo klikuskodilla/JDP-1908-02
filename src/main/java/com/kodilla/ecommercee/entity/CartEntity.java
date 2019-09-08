@@ -1,9 +1,13 @@
 package com.kodilla.ecommercee.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,9 +31,10 @@ public class CartEntity {
 	@JoinColumn(name = "USER_ID")
 	private UserEntity userEntity;
 
-	@ElementCollection
-	@MapKeyClass(value = ProductEntity.class)
+	@ElementCollection(targetClass = Integer.class)
+	@MapKeyClass(ProductEntity.class)
 	@CollectionTable(name = "TEST_MAP2")
+	@Fetch(value = FetchMode.JOIN)
 	private Map<ProductEntity, Integer> productMap = new HashMap<>();
 
 //	Backup Code
