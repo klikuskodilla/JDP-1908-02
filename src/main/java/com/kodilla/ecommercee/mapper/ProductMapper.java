@@ -2,7 +2,6 @@ package com.kodilla.ecommercee.mapper;
 
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.entity.ProductEntity;
-import com.kodilla.ecommercee.entity.ProductGroupEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class ProductMapper {
                 productDto.getName(),
                 productDto.getPrice(),
                 productDto.getDescription(),
-                new ProductGroupEntity());
+                null);
     }
 
     public ProductDto mapToProductDto(final ProductEntity productEntity) {
