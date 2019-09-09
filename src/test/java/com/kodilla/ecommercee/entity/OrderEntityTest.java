@@ -48,12 +48,14 @@ public class OrderEntityTest {
         repository.save(order);
 
         //then
-        Long id = order.getOrderId();
-        Optional<OrderEntity> receivedOrder = repository.findById(id);
+        long orderId = order.getOrderId();
+        int cartId = order.getCartEntity().getCartId();
+        Optional<OrderEntity> receivedOrder = repository.findById(orderId);
         Assert.assertTrue(receivedOrder.isPresent());
+        Assert.assertEquals(cartId, receivedOrder.get().getCartEntity().getCartId());
 
         //cleanUp
-        repository.deleteById(id);
+        repository.deleteById(orderId);
     }
 
     @Test
