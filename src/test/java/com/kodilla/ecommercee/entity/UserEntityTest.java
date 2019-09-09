@@ -19,13 +19,13 @@ public class UserEntityTest {
     @Test
     public void testUserEntitySave(){
         //given
-        UserEntity user = new UserEntity("UKey:test", "Status:active", "login:test", "pass:test", "fname:test", "lname:test", "street:test", "city:test", "postCode", "phone", "test@test.com");
+        UserEntity user = new UserEntity();
 
         //when
         repository.save(user);
 
         //then
-        int id = user.getId();
+        long id = user.getId();
         Optional<UserEntity> newUser = repository.findById(id);
         Assert.assertTrue(newUser.isPresent());
 
