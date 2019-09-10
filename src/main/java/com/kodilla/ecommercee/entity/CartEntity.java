@@ -42,4 +42,11 @@ public class CartEntity {
 		this.cartId = cartId;
 		this.productMap = productMap;
 	}
+
+	//konstruktor na potrzeby testów i mapperów
+
+	public CartEntity(UserEntity userEntity, Map<ProductEntity, Integer> productMap) {
+		this.userEntity = userEntity;
+		this.productMap = productMap;
+	}
 }
