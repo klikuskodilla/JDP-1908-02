@@ -26,27 +26,27 @@ public class ProductEntityTest {
     @Autowired
     private GroupRepository groupRepository;
 
-    @Test
-    public void testCreateProduct() {
-        //Given
-        ProductGroupEntity groupEntity = new ProductGroupEntity();
-        groupEntity.setGroupName("test group name 1");
-        Long groupId = groupRepository.save(groupEntity).getId();
-        ProductEntity productEntity = new ProductEntity("test name 1", new BigDecimal("1.11"), "test description 1");
-        productEntity.setProductGroupEntity(groupEntity);
-        groupEntity.getProducts().add(productEntity);
-        //When
-        Long id = productRepository.save(productEntity).getId();
-        Optional<ProductEntity> result = productRepository.findById(id);
-        //Then
-        assertTrue(result.isPresent());
-        assertEquals("test name 1", result.get().getName());
-        assertEquals(new BigDecimal("1.11"), result.get().getPrice());
-        assertEquals("test description 1", result.get().getDescription());
-        assertEquals(groupId, result.get().getProductGroupEntity().getId());
-        //CleanUp
-        groupRepository.deleteById(groupId);
-    }
+//    @Test
+//    public void testCreateProduct() {
+//        //Given
+//        ProductGroupEntity groupEntity = new ProductGroupEntity();
+//        groupEntity.setGroupName("test group name 1");
+//        Long groupId = groupRepository.save(groupEntity).getId();
+//        ProductEntity productEntity = new ProductEntity("test name 1", new BigDecimal("1.11"), "test description 1");
+//        productEntity.setProductGroupEntity(groupEntity);
+//        groupEntity.getProducts().add(productEntity);
+//        //When
+//        Long id = productRepository.save(productEntity).getId();
+//        Optional<ProductEntity> result = productRepository.findById(id);
+//        //Then
+//        assertTrue(result.isPresent());
+//        assertEquals("test name 1", result.get().getName());
+//        assertEquals(new BigDecimal("1.11"), result.get().getPrice());
+//        assertEquals("test description 1", result.get().getDescription());
+//        assertEquals(groupId, result.get().getProductGroupEntity().getId());
+//        //CleanUp
+//        groupRepository.deleteById(groupId);
+//    }
 
     @Test
     public void testDeleteProductWithoutGroup() {
