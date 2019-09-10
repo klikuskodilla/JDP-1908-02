@@ -24,13 +24,24 @@ public class UserEntity {
 	@Column(name = "STATUS")
 	private int status;
 	@Column(name = "USER_KEY")
-	private int userKey;
+	private String userKey;
 	@Column(name = "LOGIN")
 	private String login;
 	@Column(name = "PASSWORD")
 	private String password;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "CREDENTIAL_ID")
-	private CredentialEntity credentialEntity;
+	@Column(name = "FIRST_NAME", nullable = false)
+	private String firstName;
+	@Column(name = "LAST_NAME", nullable = false)
+	private String lastName;
+	@Column(name = "STREET", nullable = false)
+	private String street;
+	@Column(name = "CITY", nullable = false)
+	private String city;
+	@Column(name = "POST_CODE", nullable = false)
+	private String postCode;
+	@Column(name = "PHONE")
+	private String phone;
+	@Column(name = "MAIL", nullable = false)
+	private String mail;
 }

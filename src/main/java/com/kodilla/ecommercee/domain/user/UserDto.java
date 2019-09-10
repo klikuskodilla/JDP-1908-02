@@ -1,6 +1,5 @@
-package com.kodilla.ecommercee.domain;
+package com.kodilla.ecommercee.domain.user;
 
-import com.kodilla.ecommercee.entity.CredentialEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,5 +14,4 @@ public class UserDto {
     private int userKey;
     private String login;
     private String password;
-    private CredentialEntity credentialEntity;
 }
