@@ -48,7 +48,6 @@ public class CartEntity {
 		this.productMap = productMap;
 	}
 
-	//konstruktor na potrzeby testów
 
 	public CartEntity(UserEntity userEntity, Map<ProductEntity, Integer> productMap) {
 		this.userEntity = userEntity;
