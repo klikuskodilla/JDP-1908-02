@@ -12,4 +12,11 @@ import java.util.List;
 public interface OrderRepository extends CrudRepository<OrderEntity, Long> {
     @Override
     List<OrderEntity> findAll();
+
+    @Override
+    List<OrderEntity> findAll();
+
+    Optional<OrderEntity> findByOrderId(Long orderId);
+
+    void deleteByOrderId(Long orderId);
 }
