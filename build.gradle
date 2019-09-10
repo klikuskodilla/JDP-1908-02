@@ -37,6 +37,7 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    apt 'org.projectlombok:lombok:1.18.8'
 
     compile 'org.mapstruct:mapstruct:1.3.0.Final'
     apt 'org.mapstruct:mapstruct-processor:1.3.0.Final'
