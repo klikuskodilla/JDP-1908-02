@@ -8,10 +8,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
 @Repository
-public interface OrderRepository extends CrudRepository<OrderEntity, Integer> {
-
+@Transactional
+public interface OrderRepository extends CrudRepository<OrderEntity, Long> {
     @Override
     List<OrderEntity> findAll();
 
