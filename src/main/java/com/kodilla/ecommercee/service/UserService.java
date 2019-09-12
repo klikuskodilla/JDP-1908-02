@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee.service;
 
-import com.kodilla.ecommercee.domain.user.UserDto;
+import com.kodilla.ecommercee.domain.user.LoginUserDto;
 import com.kodilla.ecommercee.entity.UserEntity;
 import com.kodilla.ecommercee.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,20 +39,20 @@ public class UserService {
         }
     }
 
-    public UserEntity attemptLogin(final UserEntity userEntity) {
-        Optional<UserEntity> userOpt = userRepository.findByLoginAndPassword(userEntity.getLogin(), userEntity.getPassword());
+    public boolean attemptLogin(final LoginUserDto loginUserDto) {
+        Optional<UserEntity> userOpt = userRepository.findByLoginAndPassword(loginUserDto.getLogin(), loginUserDto.getPassword());
         if (userOpt.isPresent()) {
             UserEntity user = userOpt.get();
             if (user.getStatus() == 1) {
                 user.setUserKey(generateSession());
-                return userRepository.save(user);
+                userRepository.save(user);
+                return true;
             }
         }
-        return userEntity;
+        return false;
     }
 
     private String generateSession() {
         return "";
     }
-
 }

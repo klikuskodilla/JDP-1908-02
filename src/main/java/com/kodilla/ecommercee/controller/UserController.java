@@ -1,9 +1,8 @@
 package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.domain.user.LoginUserDto;
 import com.kodilla.ecommercee.domain.user.UserDto;
-import com.kodilla.ecommercee.entity.UserEntity;
 import com.kodilla.ecommercee.mapper.UserMapper;
-import com.kodilla.ecommercee.repository.UserRepository;
 import com.kodilla.ecommercee.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +50,7 @@ public class UserController {
     }
 
     @PutMapping("login")
-    public UserDto attemptLogin(@RequestBody UserDto userDto) {
-        return userMapper.mapToUserDto(userService.attemptLogin(userMapper.mapToUser(userDto)));
+    public boolean attemptLogin(@RequestBody LoginUserDto loginUserDto) {
+        return userService.attemptLogin(loginUserDto);
     }
 }

@@ -30,18 +30,18 @@ public class UserEntity {
 	@Column(name = "PASSWORD")
 	private String password;
 
-	@Column(name = "FIRST_NAME", nullable = false)
+	@Column(name = "FIRST_NAME")
 	private String firstName;
-	@Column(name = "LAST_NAME", nullable = false)
+	@Column(name = "LAST_NAME")
 	private String lastName;
-	@Column(name = "STREET", nullable = false)
+	@Column(name = "STREET")
 	private String street;
-	@Column(name = "CITY", nullable = false)
+	@Column(name = "CITY")
 	private String city;
-	@Column(name = "POST_CODE", nullable = false)
+	@Column(name = "POST_CODE")
 	private String postCode;
 	@Column(name = "PHONE")
 	private String phone;
-	@Column(name = "MAIL", nullable = false)
+	@Column(name = "MAIL")
 	private String mail;
 }
