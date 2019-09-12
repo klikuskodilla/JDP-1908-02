@@ -30,4 +30,8 @@ public class OrderEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CART_ID")
     private CartEntity cartEntity;
+
+    public OrderEntity(CartEntity cartEntity) {
+        this.cartEntity = cartEntity;
+    }
 }
