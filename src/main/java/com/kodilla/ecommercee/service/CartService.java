@@ -6,19 +6,13 @@ import com.kodilla.ecommercee.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class CartService {
-
     @Autowired
     CartRepository cartRepository;
-
-    public List<CartEntity> getAllCarts() {
-        return cartRepository.findAll();
-    }
 
     public Optional<CartEntity> getCart(int id){
         return cartRepository.findById(id);
@@ -43,8 +37,6 @@ public class CartService {
         CartEntity updatedCart = new CartEntity(cartId, cartRepository.findById(cartId).orElse(null).getUserEntity(), productsInCart);
         return updatedCart;
     }
-
-
 
     public CartEntity deleteProduct(final int cartId, final Long id) {
         Map<ProductEntity, Integer> productsInCart = cartRepository.findById(cartId).orElse(null).getProductMap();
