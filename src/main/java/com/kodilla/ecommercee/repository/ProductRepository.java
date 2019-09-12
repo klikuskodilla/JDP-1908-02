@@ -8,10 +8,11 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+
 @Repository
 @Transactional
 public interface ProductRepository extends CrudRepository<ProductEntity, Long> {
-  
+
     @Override
     List<ProductEntity> findAll();
 
