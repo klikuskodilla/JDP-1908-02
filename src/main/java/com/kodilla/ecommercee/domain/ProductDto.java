@@ -14,14 +14,5 @@ public class ProductDto {
     private String name;
     private BigDecimal price;
     private String description;
-
-    @Override
-    public String toString() {
-        return "ProductDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                '}';
-    }
+    private Long groupId;
 }

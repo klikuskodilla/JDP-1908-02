@@ -24,7 +24,7 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public ProductDto getProduct(@PathVariable("id") Long productId) throws ProductNotFoundException {
-        return mapper.mapToProductDto(service.getProduct(productId).orElseThrow(ProductNotFoundException::new));
+        return mapper.mapToProductDto(service.getProduct(productId).orElseThrow(()-> new ProductNotFoundException(productId)));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
