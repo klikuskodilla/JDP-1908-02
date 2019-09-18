@@ -35,7 +35,7 @@ public class ProductEntity {
     @NotNull
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     private ProductGroupEntity productGroupEntity;
 
