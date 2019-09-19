@@ -7,14 +7,14 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "session")
+@Table(name = "SESSIONS")
 public class SessionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,8 +23,8 @@ public class SessionEntity {
     private Long id;
 
     @Column(name = "USER_KEY")
-    private String userId;
+    private String userKey;
 
-    @Column(name = "LAST_UPDATE_DATE")
-    private Date modificationDate;
+    @Column(name = "LAST_ACTIVITY_DATE")
+    private LocalDate lastActivity;
 }

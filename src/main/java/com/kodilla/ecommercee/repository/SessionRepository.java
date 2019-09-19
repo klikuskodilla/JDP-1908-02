@@ -2,6 +2,11 @@ package com.kodilla.ecommercee.repository;
 
 import com.kodilla.ecommercee.entity.SessionEntity;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface SessionRepository extends CrudRepository<Long, SessionEntity> {
+import javax.transaction.Transactional;
+
+@Repository
+@Transactional
+public interface SessionRepository extends CrudRepository<SessionEntity, Long> {
 }
