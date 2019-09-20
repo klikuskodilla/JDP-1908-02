@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.mapper;
 
 import com.kodilla.ecommercee.domain.CartDto;
+import com.kodilla.ecommercee.domain.CartDtoCreateCart;
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.entity.CartEntity;
 import com.kodilla.ecommercee.entity.ProductEntity;
@@ -20,6 +21,13 @@ public class CartMapper {
                 cartDto.getCartId(),
                 cartDto.getUserEntity(),
                 cartDto.getProductMap());
+    }
+
+    public CartEntity mapToCartEntityCreateCart(final CartDtoCreateCart cartDtoCreateCart) {
+        return new CartEntity(
+                cartDtoCreateCart.getCartId(),
+                null
+        );
     }
 
     public CartDto mapToCartDto(final CartEntity cartEntity) {
