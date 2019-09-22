@@ -34,4 +34,9 @@ public class OrderEntity {
     public OrderEntity(CartEntity cartEntity) {
         this.cartEntity = cartEntity;
     }
+
+    public OrderEntity(@NotNull LocalDate dateOfOrder, CartEntity cartEntity) {
+        this.dateOfOrder = dateOfOrder;
+        this.cartEntity = cartEntity;
+    }
 }

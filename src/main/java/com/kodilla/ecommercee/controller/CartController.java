@@ -12,6 +12,7 @@ import com.kodilla.ecommercee.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 @RestController
@@ -52,9 +53,8 @@ public class CartController {
             value += 1;
             productsInCart.put(productToAdd, value);
         }
-
-        CartEntity updatedCart = new CartEntity(cartId, productsInCart);
-        cartService.saveCart(updatedCart);
+        cartEntity.setProductMap(productsInCart);
+        cartService.saveCart(cartEntity);
     }
 
     @PutMapping("{cartId}/removeProduct/{productId}")
@@ -77,7 +77,7 @@ public class CartController {
     @PostMapping("{cartId}/createOrder")
     public void createOrder(@PathVariable Integer cartId) throws NotFoundException {
         CartEntity cartEntity = cartService.getCart(cartId).orElseThrow(NotFoundException::new);
-        orderService.saveOrder(new OrderEntity(cartEntity));
+        orderService.saveOrder(new OrderEntity(LocalDate.now(), cartEntity));
         cartService.deleteCart(cartId);
     }
 }
