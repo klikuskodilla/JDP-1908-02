@@ -16,11 +16,11 @@ import java.util.Map;
 public class CartDtoCreateCart {
     private int cartId;
     private Long userId;
-    private Map<ProductEntity, Integer> products;
+    private Map<Long, Integer> products = new HashMap<>();
 
-    public CartDtoCreateCart(int cartId, Long userId) {
-        this.cartId = cartId;
-        this.userId = userId;
-        this.products = new HashMap<>();
-    }
+//    public CartDtoCreateCart(int cartId, Long userId) {
+//        this.cartId = cartId;
+//        this.userId = userId;
+//        this.products = new HashMap<>();
+//    }
 }

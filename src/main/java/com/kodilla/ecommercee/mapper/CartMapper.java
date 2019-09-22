@@ -5,6 +5,8 @@ import com.kodilla.ecommercee.domain.CartDtoCreateCart;
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.entity.CartEntity;
 import com.kodilla.ecommercee.entity.ProductEntity;
+import com.kodilla.ecommercee.service.ProductService;
+import com.kodilla.ecommercee.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,10 @@ import java.util.Map;
 public class CartMapper {
     @Autowired
     private ProductMapper productMapper;
+    @Autowired
+    UserService userService;
+    @Autowired
+    ProductService productService;
 
     public CartEntity mapToCartEntity(final CartDto cartDto) {
         return new CartEntity(
@@ -24,9 +30,17 @@ public class CartMapper {
     }
 
     public CartEntity mapToCartEntityCreateCart(final CartDtoCreateCart cartDtoCreateCart) {
+        Map<ProductEntity, Integer> mapInEntity = new HashMap<>();
+        Map<Long, Integer> mapInDto = cartDtoCreateCart.getProducts();
+        for(Map.Entry<Long, Integer> map: mapInDto.entrySet()){
+            Long id = map.getKey();
+            ProductEntity product = productService.getProduct(id).orElse(null);
+            mapInEntity.put(product, map.getValue());
+        }
         return new CartEntity(
                 cartDtoCreateCart.getCartId(),
-                null
+                userService.getUser(cartDtoCreateCart.getUserId()).orElse(null),
+                mapInEntity
         );
     }
 
